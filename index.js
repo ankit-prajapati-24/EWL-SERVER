@@ -6,6 +6,7 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const Authrouter = require("./routes/Auth");
+const blogRoutes = require("./routes/BlogRoutes");
 const dotenv = require("dotenv");
 dotenv.config(); // Load environment variables from .env file
 const PORT = process.env.PORT || 4000;
@@ -25,8 +26,9 @@ app.use(
   })
 );
 
-app.use("/api/v1/Auth",Authrouter);
 
+app.use("/api/v1/Auth",Authrouter);
+app.use("/api/v1/blog",blogRoutes);
 app.get("/", (req, res) => {
   res.json({
     message: "Your server is running"
